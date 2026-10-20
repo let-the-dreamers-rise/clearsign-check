@@ -1,0 +1,8 @@
+{
+  "name": "clearsign-check",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@ethereum-sourcify/clear-signing": "0.3.0"
+  }
+}

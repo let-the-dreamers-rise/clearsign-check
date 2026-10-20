@@ -1,0 +1,61 @@
+name: Registry scan
+
+# Replays real transactions against the ERC-7730 registry and reports every
+# place where the clear-signing screen and the onchain effects disagree.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scan/**", ".github/workflows/scan.yml"]
+  schedule:
+    - cron: "17 3 * * 1"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: npm ci --ignore-scripts
+      - name: Clone the registry (full history, for the audit replay)
+        run: git clone https://github.com/ethereum/clear-signing-erc7730-registry registry
+      - name: Fetch onchain evidence
+        run: node scan/fetch.mjs registry evidence.json
+      - name: Render every transaction with the reference library
+        run: node scan/render.mjs registry evidence.json rendered.json
+      - name: Compare screens with effects
+        run: python3 -I scan/analyze.py registry evidence.json rendered.json results/current
+      - name: Replay registry fixes
+        run: bash scan/replay.sh registry evidence.json . results/replay
+      - name: Publish results
+        run: |
+          mkdir -p results
+          git -C registry rev-parse HEAD > results/registry-commit.txt
+          gzip -c evidence.json > results/evidence.json.gz
+          rm -rf results/replay/before results/replay/after results/replay/*.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results
+          git commit -m "scan: results for registry $(cat results/registry-commit.txt | cut -c1-7) [skip ci]" || exit 0
+          git push
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scan
+          path: |
+            evidence.json
+            rendered.json
+            results/

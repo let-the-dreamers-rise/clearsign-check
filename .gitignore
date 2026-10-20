@@ -1,0 +1,5 @@
+node_modules/
+/evidence.json
+/rendered.json
+/registry/
+/render.mjs
