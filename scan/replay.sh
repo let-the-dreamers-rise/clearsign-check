@@ -42,12 +42,14 @@ print(",".join(h for h, r in ev["receipts"].items() if (r.get("chain"), (r.get("
 import json, sys
 out, sha, subject = sys.argv[1:4]
 key = lambda f: (f["tx"], f["kind"], f["detail"])
-b = {key(f): f for f in json.load(open(f"{out}/before/findings.json"))["findings"]}
+B = json.load(open(f"{out}/before/findings.json"))
+b = {key(f): f for f in B["findings"]}
+checked = B["summary"].get("checked", 0)
 a = {key(f) for f in json.load(open(f"{out}/after/findings.json"))["findings"]}
 gone = [b[k] for k in b if k not in a]
 with open(f"{out}/replay.md", "a") as fh:
     fh.write(f"\n## {sha[:7]} {subject}\n\n")
-    fh.write(f"findings before {len(b)}, after {len(a)}, removed by the fix {len(gone)}\n\n")
+    fh.write(f"transactions checked {checked}, findings before {len(b)}, after {len(a)}, removed by the fix {len(gone)}\n\n")
     for f in gone:
         fh.write(f"- {f['kind']} chain {f['chain']} {f['to']} tx {f['tx']}: {f['detail']}\n")
 EOF

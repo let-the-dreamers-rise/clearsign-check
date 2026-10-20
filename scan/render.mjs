@@ -17,8 +17,15 @@ const resolver = {
   type: "custom",
   resolver: { index: { calldataIndex, eip712Index }, fetchDescriptor: async (p) => read(p) },
 };
+// Native currency per chain, as a wallet would know it.
+const NATIVE = { 1: "ETH", 10: "ETH", 56: "BNB", 100: "xDAI", 137: "POL", 146: "S", 250: "FTM", 324: "ETH", 5000: "MNT",
+  8453: "ETH", 42161: "ETH", 42220: "CELO", 43114: "AVAX", 59144: "ETH", 81457: "ETH", 534352: "ETH" };
+const NATIVE_ADDRS = new Set(["0x0000000000000000000000000000000000000000", "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"]);
+const native = (chainId) => ({ name: NATIVE[chainId] ?? "ETH", symbol: NATIVE[chainId] ?? "ETH", decimals: 18 });
 const provider = {
+  resolveChainInfo: async (chainId) => ({ name: String(chainId), nativeCurrency: native(chainId) }),
   resolveToken: async (chainId, address) => {
+    if (NATIVE_ADDRS.has(address.toLowerCase())) return native(chainId);
     const t = ev.tokens[`${chainId}:${address.toLowerCase()}`];
     return t && t.symbol ? { name: t.symbol, symbol: t.symbol, decimals: t.decimals ?? 18 } : null;
   },
