@@ -629,3 +629,102 @@ transactions checked 0, findings before 0, after 0, removed by the fix 0
 
 transactions checked 0, findings before 0, after 0, removed by the fix 0
 
+
+## bab3ac9 fix(kiln): show the total ETH sent by batch deposits (#3141)
+
+transactions checked 3, findings before 0, after 0, removed by the fix 0
+
+
+## 53d86dc fix(flyingtulip): Cyfrin Audit name the paid token, render amounts, show interpolated fields (#3026)
+
+transactions checked 28, findings before 9, after 5, removed by the fix 9
+
+- AMOUNT_IN_BASE_UNITS chain 146 0x137d66e0a5d4ceee0a7eda011bc3aa94931c7234 tx 0x22d7a6d375aad929d4338cdbe1f50f4fb536f7377044dc5cbc50e678bdb83a87: 'ftUSD amount' shows 9020293, the raw base-unit count of 9.020293 ftUSD, with no unit
+- AMOUNT_IN_BASE_UNITS chain 146 0x137d66e0a5d4ceee0a7eda011bc3aa94931c7234 tx 0x428c22fec6910d8f6865f8444397507a3222c8c9b645e9fcb73d03d5f19835ca: 'ftUSD amount' shows 9020293, the raw base-unit count of 9.020293 ftUSD, with no unit
+- AMOUNT_IN_BASE_UNITS chain 146 0xb9b23b0555b8066f3d5954ea6c679a02339f78dc tx 0xc98c03f56d746abd528d34a3851c3515e252baac4cdafa4a7615b6fd320d27fc: 'ftUSD amount' shows 8438969, the raw base-unit count of 8.438969 ftUSD, with no unit
+- AMOUNT_IN_BASE_UNITS chain 146 0xabd838e9977fc76430d637ed35eccfaf178ce071 tx 0x3b0481985d2a1622056e85cbfec88c113d2b817e2e9cba1dfe1ceb79983f3fe3: 'FT amount' shows 1109374479553920000, the raw base-unit count of 1.10937447955392 FT, with no unit
+- AMOUNT_IN_BASE_UNITS chain 1 0xba49d0ac42f4fba4e24a8677a22218a4df75ebaa tx 0xaead79b85ce825ec206bb4b2fdaf52386e8ac80c68e0c81a1fab256124227595: 'FT amount' shows 19977580800000000000, the raw base-unit count of 19.9775808 FT, with no unit
+- AMOUNT_IN_BASE_UNITS chain 1 0xba49d0ac42f4fba4e24a8677a22218a4df75ebaa tx 0x6e7e9c481786653c6e13323045b052225050c481638166530caba4b5f14db598: 'FT amount' shows 4000000000000000000000, the raw base-unit count of 4000 FT, with no unit
+- AMOUNT_IN_BASE_UNITS chain 1 0xba49d0ac42f4fba4e24a8677a22218a4df75ebaa tx 0xb44405547ce885e158951a0c1c49de43c80482a7e7d3134ef8388c51a17ccd8e: 'FT amount' shows 900000000000000000000, the raw base-unit count of 900 FT, with no unit
+- AMOUNT_IN_BASE_UNITS chain 1 0xba49d0ac42f4fba4e24a8677a22218a4df75ebaa tx 0xbca26c30da91079bd693d6e1e67c2daac627f1ede1a778b2d38b911586c33697: 'FT amount' shows 5000000000000000000000, the raw base-unit count of 5000 FT, with no unit
+- AMOUNT_IN_BASE_UNITS chain 1 0xba49d0ac42f4fba4e24a8677a22218a4df75ebaa tx 0x26d66ef4801bd7266785619823e93cb75f4dfe5a5a2b16360cb5bb60c48566fe: 'FT amount' shows 4994591450000000000000, the raw base-unit count of 4994.59145 FT, with no unit
+
+## df756a6 fix(kiln): Cyfrin Audit decode the withdrawal credentials of the batch deposit (#3017)
+
+transactions checked 3, findings before 0, after 0, removed by the fix 0
+
+
+## 885cdab fix(swissborg): name the destination chain of the BORG bridge (#3020)
+
+transactions checked 5, findings before 0, after 0, removed by the fix 0
+
+
+## e12d120 fix(kyberswap): Cyfrin Audit show a zero dstReceiver as the sender (#3015)
+
+transactions checked 10, findings before 0, after 0, removed by the fix 0
+
+
+## a43d796 fix(swell): Cyfrin Audit show unlimited allowances as "Unlimited" (#2967)
+
+transactions checked 5, findings before 0, after 0, removed by the fix 0
+
+
+## 36859b2 fix(morpho): Cyfrin Audit render Morpho Blue amounts and name the msolvBTCbbn underlying (#3022)
+
+transactions checked 27, findings before 0, after 2, removed by the fix 0
+
+
+## eec6c25 fix(aave): allow contract addresses in the position-manager fields (#3024)
+
+transactions checked 46, findings before 0, after 0, removed by the fix 0
+
+
+## 08546bb fix(serenita): Cyfrin Audit label the receiver of the vault shares (#3018)
+
+transactions checked 1, findings before 0, after 0, removed by the fix 0
+
+
+## b51227d fix(lido): Cyfrin Audit declare the address(0) owner sentinel, and state the scope of setApprovalForAll (#2989)
+
+transactions checked 19, findings before 0, after 0, removed by the fix 0
+
+
+## 21bcd0f fix(aave): render the repayETH "repay all" sentinel as the withdraw fields do (#2996)
+
+transactions checked 37, findings before 0, after 0, removed by the fix 0
+
+
+## c7ef193 fix(p2p): show the client config and decode the withdrawal credentials (#2987)
+
+transactions checked 5, findings before 0, after 0, removed by the fix 0
+
+
+## 175e8cf fix(safe): display the Safe singleton on proxy creation (#2908)
+
+transactions checked 34, findings before 4, after 4, removed by the fix 0
+
+
+## f89b4ff fix(lombard): show unlimited LBTC allowances as "Unlimited" (#2892)
+
+transactions checked 18, findings before 0, after 0, removed by the fix 0
+
+
+## 005e1df fix(aave, flyingtulip): Clip threshold values (#2870)
+
+transactions checked 93, findings before 0, after 0, removed by the fix 0
+
+
+## c805fb4 fix(midas): apply label and intent fixes to v2 descriptors (#2217)
+
+transactions checked 0, findings before 0, after 0, removed by the fix 0
+
+
+## 7a7469d fix(okx): remove extraData from excluded for functions with unnamed param
+
+transactions checked 0, findings before 0, after 0, removed by the fix 0
+
+
+## f59426f fix(okx): apply fixes to renamed v1.0.7 file
+
+transactions checked 0, findings before 0, after 0, removed by the fix 0
+
